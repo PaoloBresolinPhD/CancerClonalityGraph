@@ -1,2 +1,5 @@
 # directory store MAC OS
 *.DS_Store
+
+# python virtual environment
+*.venv
