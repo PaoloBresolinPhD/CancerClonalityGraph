@@ -194,6 +194,73 @@ class GraphDataset:
 
         return n_graphs
     
+    def min_number_graphs(self):
+        """
+        Computes the minimum number of graphs in a patient in the dataset.
+
+        Returns:
+        - min_graphs: minimum number of graphs in a patient in the dataset.
+        """
+
+        # minimum number of graphs in a patient
+        min_graphs = len(self.__patients[0])
+
+        # iterate through all patients and update the minimum number of graphs
+        for patient in self.__patients:
+            curr_n_graphs = len(patient)
+            if curr_n_graphs < min_graphs:
+                min_graphs = curr_n_graphs
+        
+        return min_graphs
+
+    def max_number_graphs(self):
+        """
+        Computes the maximum number of graphs in a patient in the dataset.
+
+        Returns:
+        - max_graphs: maximum number of graphs in a patient in the dataset.
+        """
+
+        # maximum number of graphs in a patient
+        max_graphs = len(self.__patients[0])
+
+        # iterate through all patients and update the maximum number of graphs
+        for patient in self.__patients:
+            curr_n_graphs = len(patient)
+            if curr_n_graphs > max_graphs:
+                max_graphs = curr_n_graphs
+        
+        return max_graphs
+
+    def avg_number_graphs(self):
+        """
+        Computes the average number of graphs in a patient in the dataset.
+
+        Returns:
+        - avg_graphs: average number of graphs in a patient in the dataset.
+        """
+
+        # average number of graphs in a patient in the dataset
+        return self.get_number_graphs()/self.get_number_patients()
+
+    def median_number_graphs(self):
+        """
+        Computes the median number of graphs in a patient in the dataset.
+
+        Returns:
+        - median_graphs: median number of graphs in a patient in the dataset.
+        """
+
+        # list with the number of graphs in each patient
+        n_graphs_list = []
+
+        # iterate through all patients and store the number of graphs in each patient
+        for patient in self.__patients:
+            n_graphs_list.append(len(patient))
+        
+        # return the median number of graphs in a patient
+        return np.median(n_graphs_list)
+
     def get_mutations(self):
         """
         Returns the set of mutations that label nodes in the input dataset of graphs.
